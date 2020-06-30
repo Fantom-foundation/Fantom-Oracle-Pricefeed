@@ -1,0 +1,38 @@
+# Ignore JetBrains & Eclipse & xCode IDEs
+.idea/
+local.properties
+.settings/
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+
+# CMake
+cmake-build-*/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# special dev and output folders
+.metadata
+bin/
+tmp/
+out/
+build/
+
+# MacOS
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent

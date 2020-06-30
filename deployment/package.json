@@ -1,0 +1,28 @@
+{
+  "name": "fantom-price-oracle-deployment",
+  "version": "1.0.0",
+  "description": "Fantom Price Oracle contract deployment script.",
+  "main": "deploy.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fantom-foundation/Fantom-Price-Oracle.git"
+  },
+  "keywords": [
+    "fantom",
+    "fantom-foundation",
+    "smart-contract",
+    "blockchain",
+    "web3js"
+  ],
+  "author": "Jiri Malek",
+  "license": "MIT",
+  "homepage": "https://github.com/Fantom-foundation/Fantom-Price-Oracle#README.md",
+  "dependencies": {
+    "ethereumjs-tx": "^2.1.2",
+    "md5-file": "^5.0.0",
+    "moment": "^2.27.0",
+    "solc": "^0.6.10",
+    "web3": "^1.2.9"
+  }
+}
