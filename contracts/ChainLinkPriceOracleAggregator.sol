@@ -105,8 +105,8 @@ contract ChainLinkPriceOracleAggregator is AggregatorInterface {
         }
 
         // store the new value
-        answers[round % answers.length] = _value;
-        timeStamps[round % answers.length] = _stamp;
+        answers[_round % answers.length] = _value;
+        timeStamps[_round % answers.length] = _stamp;
 
         // emit update event
         emit AnswerUpdated(_value, _round, _stamp);
