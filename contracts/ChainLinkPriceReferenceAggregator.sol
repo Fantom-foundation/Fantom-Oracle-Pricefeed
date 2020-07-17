@@ -13,6 +13,7 @@ contract ChainLinkPriceReferenceAggregator {
         address addr;       // address of the token (unique identifier)
         bytes32 name;       // Name fo the token
         bytes32 symbol;     // symbol of the token
+        string logo;        // URL address of the token logo
         uint decimals;      // number of decimals the token's price oracle uses
         bool isActive;      // is this token active in DeFi?
         bool canDeposit;    // is this token available for deposit?
@@ -143,8 +144,10 @@ contract ChainLinkPriceReferenceAggregator {
     // addToken adds new token into the reference contract.
     function addToken(
         address _addr,
+        address _aggregator,
         bytes32 _name,
         bytes32 _symbol,
+        string calldata _logo,
         uint _decimals,
         bool _isActive,
         bool _canDeposit,
@@ -158,11 +161,16 @@ contract ChainLinkPriceReferenceAggregator {
         // try to find the address
         require(0 > findTokenIndex(_addr), "token already known");
 
+        // set the price aggregator
+        aggregators[_addr] = AggregatorInterface(_aggregator);
+        emit AggregatorChanged(_addr, _aggregator, now);
+
         // add the token to the list
         tokens.push(TokenInformation({
             addr : _addr,
             name : _name,
             symbol : _symbol,
+            logo: _logo,
             decimals : _decimals,
             isActive : _isActive,
             canDeposit : _canDeposit,
@@ -179,6 +187,7 @@ contract ChainLinkPriceReferenceAggregator {
     // updateToken modifies existing token in the reference contract.
     function updateToken(
         address _addr,
+        string calldata _logo,
         uint _decimals,
         bool _isActive,
         bool _canDeposit,
@@ -194,6 +203,7 @@ contract ChainLinkPriceReferenceAggregator {
         require(0 <= ix, "token not known");
 
         // update token details in the contract
+        tokens[uint256(ix)].logo = _logo;
         tokens[uint256(ix)].decimals = _decimals;
         tokens[uint256(ix)].isActive = _isActive;
         tokens[uint256(ix)].canDeposit = _canDeposit;
