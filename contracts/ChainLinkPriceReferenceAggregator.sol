@@ -175,6 +175,20 @@ contract ChainLinkPriceReferenceAggregator {
         return - 1;
     }
 
+    // tokenPriceDecimals returns the number of decimal places a price
+    // returned for the given token will be encoded to.
+    function tokenPriceDecimals(address _token) public view returns (uint8) {
+        // the price oracle must be set for the token
+        require(aggregators[_token] != AggregatorInterface(0), "token not available");
+
+        // try to find the token address in the tokens list
+        int256 ix = findTokenIndex(_token);
+        require(0 <= ix, "token not known");
+
+        // return the decimals registered
+        return tokens[uint256(ix)].priceDecimals;
+    }
+
     // addToken adds new token into the reference contract.
     function addToken(
         address _token,
